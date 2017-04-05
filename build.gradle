@@ -1,0 +1,44 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+configurations {
+    compile.exclude module: "spring-boot-starter-tomcat"
+    compile.exclude module: "logback-classic"
+    compile.exclude module: "slf4j-log4j12"
+    compile.exclude module: "log4j"
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-artemis')
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-undertow")
+    compile("org.apache.spark:spark-core_2.11:2.1.0")
+    compile("org.apache.spark:spark-sql_2.11:2.1.0")
+    compile("org.codehaus.janino:commons-compiler:2.7.8")
+    compile("org.slf4j:log4j-over-slf4j:1.7.25")
+    compile("org.slf4j:slf4j-api:1.7.5")
+    compile("org.slf4j:slf4j-simple:1.6.4")
+    
+    
+  }
